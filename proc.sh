@@ -9,7 +9,7 @@
 #
 #
 # set name of job
-#SBATCH --job-name=jliv
+#SBATCH --job-name=ohmer 16S
 
 # set the number of processors/tasks needed
 #SBATCH -n 24
@@ -60,13 +60,12 @@
 # modules or diagnostic echos.
 module load anaconda3-2021.05
 source activate qiime2-2023.5
-source activate qiime2-2023.5
 
 ## Processing of microbiome samples
 cd /hpcstor6/scratch01/p/patrick.kearns/10_26_24_Ohmer-lab
 
 #load raw FASTQ reads into QIIME
-#qiime tools import --type EMPPairedEndSequences --input-path ./data --output-path ohmer_seqs.qza
+qiime tools import --type EMPPairedEndSequences --input-path ./data --output-path ohmer_seqs.qza
 
 #demultiplex reads
 qiime demux emp-paired \
@@ -78,7 +77,7 @@ qiime demux emp-paired \
   --p-no-golay-error-correction 
 
  
- #export fastq stats
-  qiime tools export --input-path ohmer_demux.qza --output-path ohmer_demux
+ #export fastq files
+qiime tools export --input-path ohmer_demux.qza --output-path ohmer_demux
  
  
