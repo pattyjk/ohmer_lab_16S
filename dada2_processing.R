@@ -78,6 +78,9 @@ library(plyr)
 library(dplyr)
 library(reshape2)
 
+#read in ASV table
+ohmer_lab_table<-read.delim("pat_analysis/asv_table.txt", header=T, row.names=1)
+
 #read in mapping file
 meta<-read.delim('ohmer_lab_map.txt', header = T)
 
