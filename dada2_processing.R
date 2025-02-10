@@ -1,7 +1,7 @@
 if (!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager")
 BiocManager::install("dada2", version = "3.20")
-#resart or reload session
+#restart or reload session
 
 #load dada2
 library(dada2)
@@ -17,7 +17,7 @@ fnRs <- sort(list.files("./ohmer_demux/", pattern="_R2_001.fastq", full.names = 
 sample.names <- sapply(strsplit(basename(fnFs), "_"), `[`, 1)
 
 #look at quality of reads (change the number to see different samples)
-plotQualityProfile(fnFs[1:2])
+plotQualityProfile(fnFs[10:14])
 plotQualityProfile(fnRs[1:2])
 
 #assign files names
@@ -77,7 +77,6 @@ library(ggpubr)
 library(plyr)
 library(dplyr)
 library(reshape2)
-library(RColorBrewer)
 
 #read in mapping file
 meta<-read.delim('ohmer_lab_map.txt', header = T)
@@ -97,7 +96,7 @@ dim(ohmer_lab_table)
 #rarefy data to 1000 per sample
 ohmer_rare<-rrarefy(ohmer_lab_table, sample=1000)
 
-#calculate PCoA based on BC similarity
+#calculate PCoA based on Bray-Curtis similarity or Jaccard
 ohmer_pcoa<-capscale(ohmer_rare  ~ 1, distance='jaccard')
 
 #pull out x/y coordinates
@@ -121,7 +120,6 @@ ohmer.coords<-merge(ohmer.coords, meta, by.x='SampleID', by.y='SampleID')
 #plot PCoA
 ggplot(ohmer.coords, aes(MDS1, MDS2, shape=Species, color=Type))+
   geom_point(size=2.8)+
-  #geom_text()+
   theme_bw()+
   guides(alpha = "none")+
   xlab("PC1- 10.5%")+
