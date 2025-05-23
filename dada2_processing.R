@@ -152,4 +152,4 @@ ggplot(ohmer.alph, aes(Species, `specnumber(ohmer_rare)`, fill=Type))+
   theme_bw()+
   xlab("")+
   coord_flip()+
-  ylab("Shannon Diversity")
+  ylab("ASV Richness")
