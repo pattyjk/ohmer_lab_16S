@@ -1,0 +1,483 @@
+
+CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.
+To initialize your shell, run
+
+    $ conda init <SHELL_NAME>
+
+Currently supported shells are:
+  - bash
+  - fish
+  - tcsh
+  - xonsh
+  - zsh
+  - powershell
+
+See 'conda init --help' for more information and options.
+
+IMPORTANT: You may need to close and restart your shell after running 'conda init'.
+
+
+/var/spool/slurm/d/job546706/slurm_script: line 64: activate: No such file or directory
+Usage: qiime deblur denoise-16S [OPTIONS]
+
+  Perform sequence quality control for Illumina data using the Deblur workflow
+  with a 16S reference as a positive filter. Only forward reads are supported
+  at this time. The specific reference used is the 88% OTUs from Greengenes
+  13_8. This mode of operation should only be used when data were generated
+  from a 16S amplicon protocol on an Illumina platform. The reference is only
+  used to assess whether each sequence is likely to be 16S by a local
+  alignment using SortMeRNA with a permissive e-value; the reference is not
+  used to characterize the sequences.
+
+Inputs:
+  --i-demultiplexed-seqs ARTIFACT SampleData[SequencesWithQuality |
+    PairedEndSequencesWithQuality | JoinedSequencesWithQuality]
+                         The demultiplexed sequences to be denoised.
+                                                                    [required]
+Parameters:
+  --p-trim-length INTEGER
+                         Sequence trim length, specify -1 to disable
+                         trimming.                                  [required]
+  --p-left-trim-len INTEGER
+    Range(0, None)       Sequence trimming from the 5' end. A value of 0 will
+                         disable this trim.                       [default: 0]
+  --p-sample-stats / --p-no-sample-stats
+                         If true, gather stats per sample.    [default: False]
+  --p-mean-error NUMBER  The mean per nucleotide error, used for original
+                         sequence estimate.                   [default: 0.005]
+  --p-indel-prob NUMBER  Insertion/deletion (indel) probability (same for N
+                         indels).                              [default: 0.01]
+  --p-indel-max INTEGER  Maximum number of insertion/deletions.   [default: 3]
+  --p-min-reads INTEGER  Retain only features appearing at least min-reads
+                         times across all samples in the resulting feature
+                         table.                                  [default: 10]
+  --p-min-size INTEGER   In each sample, discard all features with an
+                         abundance less than min-size.            [default: 2]
+  --p-jobs-to-start INTEGER
+                         Number of jobs to start (if to run in parallel).
+                                                                  [default: 1]
+  --p-hashed-feature-ids / --p-no-hashed-feature-ids
+                         If true, hash the feature IDs.        [default: True]
+Outputs:
+  --o-table ARTIFACT FeatureTable[Frequency]
+                         The resulting denoised feature table.      [required]
+  --o-representative-sequences ARTIFACT FeatureData[Sequence]
+                         The resulting feature sequences.           [required]
+  --o-stats ARTIFACT     Per-sample stats if requested.
+    DeblurStats                                                     [required]
+Miscellaneous:
+  --output-dir PATH      Output unspecified results to a directory
+  --verbose / --quiet    Display verbose output to stdout and/or stderr
+                         during execution of this action. Or silence output if
+                         execution is successful (silence is golden).
+  --example-data PATH    Write example data and exit.
+  --citations            Show citations and exit.
+  --help                 Show this message and exit.
+
+Examples:
+  # ### example: denoise 16S
+  qiime deblur denoise-16S \
+    --i-demultiplexed-seqs demux-filtered.qza \
+    --p-trim-length 120 \
+    --p-sample-stats \
+    --o-representative-sequences representative-sequences.qza \
+    --o-table table.qza \
+    --o-stats denoising-stats.qza
+  
+
+                    There was a problem with the command:                     
+ (1/1) Invalid value for '--i-demultiplexed-seqs': abby_demux-filtered.qza
+  does not exist.
+Usage: qiime deblur denoise-16S [OPTIONS]
+
+  Perform sequence quality control for Illumina data using the Deblur workflow
+  with a 16S reference as a positive filter. Only forward reads are supported
+  at this time. The specific reference used is the 88% OTUs from Greengenes
+  13_8. This mode of operation should only be used when data were generated
+  from a 16S amplicon protocol on an Illumina platform. The reference is only
+  used to assess whether each sequence is likely to be 16S by a local
+  alignment using SortMeRNA with a permissive e-value; the reference is not
+  used to characterize the sequences.
+
+Inputs:
+  --i-demultiplexed-seqs ARTIFACT SampleData[SequencesWithQuality |
+    PairedEndSequencesWithQuality | JoinedSequencesWithQuality]
+                         The demultiplexed sequences to be denoised.
+                                                                    [required]
+Parameters:
+  --p-trim-length INTEGER
+                         Sequence trim length, specify -1 to disable
+                         trimming.                                  [required]
+  --p-left-trim-len INTEGER
+    Range(0, None)       Sequence trimming from the 5' end. A value of 0 will
+                         disable this trim.                       [default: 0]
+  --p-sample-stats / --p-no-sample-stats
+                         If true, gather stats per sample.    [default: False]
+  --p-mean-error NUMBER  The mean per nucleotide error, used for original
+                         sequence estimate.                   [default: 0.005]
+  --p-indel-prob NUMBER  Insertion/deletion (indel) probability (same for N
+                         indels).                              [default: 0.01]
+  --p-indel-max INTEGER  Maximum number of insertion/deletions.   [default: 3]
+  --p-min-reads INTEGER  Retain only features appearing at least min-reads
+                         times across all samples in the resulting feature
+                         table.                                  [default: 10]
+  --p-min-size INTEGER   In each sample, discard all features with an
+                         abundance less than min-size.            [default: 2]
+  --p-jobs-to-start INTEGER
+                         Number of jobs to start (if to run in parallel).
+                                                                  [default: 1]
+  --p-hashed-feature-ids / --p-no-hashed-feature-ids
+                         If true, hash the feature IDs.        [default: True]
+Outputs:
+  --o-table ARTIFACT FeatureTable[Frequency]
+                         The resulting denoised feature table.      [required]
+  --o-representative-sequences ARTIFACT FeatureData[Sequence]
+                         The resulting feature sequences.           [required]
+  --o-stats ARTIFACT     Per-sample stats if requested.
+    DeblurStats                                                     [required]
+Miscellaneous:
+  --output-dir PATH      Output unspecified results to a directory
+  --verbose / --quiet    Display verbose output to stdout and/or stderr
+                         during execution of this action. Or silence output if
+                         execution is successful (silence is golden).
+  --example-data PATH    Write example data and exit.
+  --citations            Show citations and exit.
+  --help                 Show this message and exit.
+
+Examples:
+  # ### example: denoise 16S
+  qiime deblur denoise-16S \
+    --i-demultiplexed-seqs demux-filtered.qza \
+    --p-trim-length 120 \
+    --p-sample-stats \
+    --o-representative-sequences representative-sequences.qza \
+    --o-table table.qza \
+    --o-stats denoising-stats.qza
+  
+
+                    There was a problem with the command:                     
+ (1/1) Invalid value for '--i-demultiplexed-seqs': abby_demux-filtered2.qza
+  does not exist.
+Usage: qiime tools export [OPTIONS]
+
+  Exporting extracts (and optionally transforms) data stored inside an
+  Artifact or Visualization. Note that Visualizations cannot be transformed
+  with --output-format
+
+Options:
+  --input-path ARTIFACT/VISUALIZATION
+                        Path to file that should be exported        [required]
+  --output-path PATH    Path to file or directory where data should be
+                        exported to                                 [required]
+  --output-format TEXT  Format which the data should be exported as. This
+                        option cannot be used with Visualizations
+  --help                Show this message and exit.
+
+                    There was a problem with the command:                     
+ (1/1) Invalid value for '--input-path': File 'abby_rep-seqs-deblur.qza' does
+  not exist.
+Usage: qiime tools export [OPTIONS]
+
+  Exporting extracts (and optionally transforms) data stored inside an
+  Artifact or Visualization. Note that Visualizations cannot be transformed
+  with --output-format
+
+Options:
+  --input-path ARTIFACT/VISUALIZATION
+                        Path to file that should be exported        [required]
+  --output-path PATH    Path to file or directory where data should be
+                        exported to                                 [required]
+  --output-format TEXT  Format which the data should be exported as. This
+                        option cannot be used with Visualizations
+  --help                Show this message and exit.
+
+                    There was a problem with the command:                     
+ (1/1) Invalid value for '--input-path': File 'abby_rep-seqs-deblur2.qza' does
+  not exist.
+Usage: qiime tools export [OPTIONS]
+
+  Exporting extracts (and optionally transforms) data stored inside an
+  Artifact or Visualization. Note that Visualizations cannot be transformed
+  with --output-format
+
+Options:
+  --input-path ARTIFACT/VISUALIZATION
+                        Path to file that should be exported        [required]
+  --output-path PATH    Path to file or directory where data should be
+                        exported to                                 [required]
+  --output-format TEXT  Format which the data should be exported as. This
+                        option cannot be used with Visualizations
+  --help                Show this message and exit.
+
+                    There was a problem with the command:                     
+ (1/1) Invalid value for '--input-path': File 'abby_table-deblur.qza' does not
+  exist.
+Usage: biom convert [OPTIONS]
+Try 'biom convert -h' for help.
+
+Error: Invalid value for '-i' / '--input-fp': File 'asv_table/feature-table.biom' does not exist.
+Usage: qiime tools export [OPTIONS]
+
+  Exporting extracts (and optionally transforms) data stored inside an
+  Artifact or Visualization. Note that Visualizations cannot be transformed
+  with --output-format
+
+Options:
+  --input-path ARTIFACT/VISUALIZATION
+                        Path to file that should be exported        [required]
+  --output-path PATH    Path to file or directory where data should be
+                        exported to                                 [required]
+  --output-format TEXT  Format which the data should be exported as. This
+                        option cannot be used with Visualizations
+  --help                Show this message and exit.
+
+                    There was a problem with the command:                     
+ (1/1) Invalid value for '--input-path': File 'abby_table-deblur2.qza' does
+  not exist.
+Usage: biom convert [OPTIONS]
+Try 'biom convert -h' for help.
+
+Error: Invalid value for '-i' / '--input-fp': File 'asv_table/feature-table2.biom' does not exist.
+Usage: qiime feature-classifier classify-sklearn [OPTIONS]
+
+  Classify reads by taxon using a fitted classifier.
+
+Inputs:
+  --i-reads ARTIFACT FeatureData[Sequence]
+                         The feature data to be classified.         [required]
+  --i-classifier ARTIFACT
+    TaxonomicClassifier  The taxonomic classifier for classifying the reads.
+                                                                    [required]
+Parameters:
+  --p-reads-per-batch VALUE Int % Range(1, None) | Str % Choices('auto')
+                         Number of reads to process in each batch. If "auto",
+                         this parameter is autoscaled to min( number of query
+                         sequences / n-jobs, 20000).         [default: 'auto']
+  --p-n-jobs INTEGER     The maximum number of concurrently worker processes.
+                         If -1 all CPUs are used. If 1 is given, no parallel
+                         computing code is used at all, which is useful for
+                         debugging. For n-jobs below -1, (n_cpus + 1 + n-jobs)
+                         are used. Thus for n-jobs = -2, all CPUs but one are
+                         used.                                    [default: 1]
+  --p-pre-dispatch TEXT  "all" or expression, as in "3*n_jobs". The number of
+                         batches (of tasks) to be pre-dispatched.
+                                                         [default: '2*n_jobs']
+  --p-confidence VALUE Float % Range(0, 1, inclusive_end=True) | Str %
+    Choices('disable')   Confidence threshold for limiting taxonomic depth.
+                         Set to "disable" to disable confidence calculation,
+                         or 0 to calculate confidence but not apply it to
+                         limit the taxonomic depth of the assignments.
+                                                                [default: 0.7]
+  --p-read-orientation TEXT Choices('same', 'reverse-complement', 'auto')
+                         Direction of reads with respect to reference
+                         sequences. same will cause reads to be classified
+                         unchanged; reverse-complement will cause reads to be
+                         reversed and complemented prior to classification.
+                         "auto" will autodetect orientation based on the
+                         confidence estimates for the first 100 reads.
+                                                             [default: 'auto']
+Outputs:
+  --o-classification ARTIFACT FeatureData[Taxonomy]
+                                                                    [required]
+Miscellaneous:
+  --output-dir PATH      Output unspecified results to a directory
+  --verbose / --quiet    Display verbose output to stdout and/or stderr
+                         during execution of this action. Or silence output if
+                         execution is successful (silence is golden).
+  --example-data PATH    Write example data and exit.
+  --citations            Show citations and exit.
+  --help                 Show this message and exit.
+
+                    There was a problem with the command:                     
+ (1/1) Invalid value for '--i-reads': abby_rep-seqs-deblur.qza does not exist.
+Usage: qiime feature-classifier classify-sklearn [OPTIONS]
+
+  Classify reads by taxon using a fitted classifier.
+
+Inputs:
+  --i-reads ARTIFACT FeatureData[Sequence]
+                         The feature data to be classified.         [required]
+  --i-classifier ARTIFACT
+    TaxonomicClassifier  The taxonomic classifier for classifying the reads.
+                                                                    [required]
+Parameters:
+  --p-reads-per-batch VALUE Int % Range(1, None) | Str % Choices('auto')
+                         Number of reads to process in each batch. If "auto",
+                         this parameter is autoscaled to min( number of query
+                         sequences / n-jobs, 20000).         [default: 'auto']
+  --p-n-jobs INTEGER     The maximum number of concurrently worker processes.
+                         If -1 all CPUs are used. If 1 is given, no parallel
+                         computing code is used at all, which is useful for
+                         debugging. For n-jobs below -1, (n_cpus + 1 + n-jobs)
+                         are used. Thus for n-jobs = -2, all CPUs but one are
+                         used.                                    [default: 1]
+  --p-pre-dispatch TEXT  "all" or expression, as in "3*n_jobs". The number of
+                         batches (of tasks) to be pre-dispatched.
+                                                         [default: '2*n_jobs']
+  --p-confidence VALUE Float % Range(0, 1, inclusive_end=True) | Str %
+    Choices('disable')   Confidence threshold for limiting taxonomic depth.
+                         Set to "disable" to disable confidence calculation,
+                         or 0 to calculate confidence but not apply it to
+                         limit the taxonomic depth of the assignments.
+                                                                [default: 0.7]
+  --p-read-orientation TEXT Choices('same', 'reverse-complement', 'auto')
+                         Direction of reads with respect to reference
+                         sequences. same will cause reads to be classified
+                         unchanged; reverse-complement will cause reads to be
+                         reversed and complemented prior to classification.
+                         "auto" will autodetect orientation based on the
+                         confidence estimates for the first 100 reads.
+                                                             [default: 'auto']
+Outputs:
+  --o-classification ARTIFACT FeatureData[Taxonomy]
+                                                                    [required]
+Miscellaneous:
+  --output-dir PATH      Output unspecified results to a directory
+  --verbose / --quiet    Display verbose output to stdout and/or stderr
+                         during execution of this action. Or silence output if
+                         execution is successful (silence is golden).
+  --example-data PATH    Write example data and exit.
+  --citations            Show citations and exit.
+  --help                 Show this message and exit.
+
+                    There was a problem with the command:                     
+ (1/1) Invalid value for '--i-reads': abby_rep-seqs-deblur2.qza does not
+  exist.
+Usage: qiime tools export [OPTIONS]
+
+  Exporting extracts (and optionally transforms) data stored inside an
+  Artifact or Visualization. Note that Visualizations cannot be transformed
+  with --output-format
+
+Options:
+  --input-path ARTIFACT/VISUALIZATION
+                        Path to file that should be exported        [required]
+  --output-path PATH    Path to file or directory where data should be
+                        exported to                                 [required]
+  --output-format TEXT  Format which the data should be exported as. This
+                        option cannot be used with Visualizations
+  --help                Show this message and exit.
+
+                    There was a problem with the command:                     
+ (1/1) Invalid value for '--input-path': File 'abby_taxonomy.qzv' does not
+  exist.
+Usage: qiime tools export [OPTIONS]
+
+  Exporting extracts (and optionally transforms) data stored inside an
+  Artifact or Visualization. Note that Visualizations cannot be transformed
+  with --output-format
+
+Options:
+  --input-path ARTIFACT/VISUALIZATION
+                        Path to file that should be exported        [required]
+  --output-path PATH    Path to file or directory where data should be
+                        exported to                                 [required]
+  --output-format TEXT  Format which the data should be exported as. This
+                        option cannot be used with Visualizations
+  --help                Show this message and exit.
+
+                    There was a problem with the command:                     
+ (1/1) Invalid value for '--input-path': File 'abby_taxonomy2.qzv' does not
+  exist.
+Usage: qiime taxa barplot [OPTIONS]
+
+  This visualizer produces an interactive barplot visualization of taxonomies.
+  Interactive features include multi-level sorting, plot recoloring, sample
+  relabeling, and SVG figure export.
+
+Inputs:
+  --i-table ARTIFACT FeatureTable[Frequency | PresenceAbsence]
+                         Feature table to visualize at various taxonomic
+                         levels.                                    [required]
+  --i-taxonomy ARTIFACT FeatureData[Taxonomy]
+                         Taxonomic annotations for features in the provided
+                         feature table. All features in the feature table must
+                         have a corresponding taxonomic annotation. Taxonomic
+                         annotations that are not present in the feature table
+                         will be ignored. If no taxonomy is provided, the
+                         feature IDs will be used as labels.        [optional]
+Parameters:
+  --m-metadata-file METADATA...
+    (multiple            The sample metadata.
+     arguments will be   
+     merged)                                                        [optional]
+  --p-level-delimiter TEXT
+                         Attempt to parse hierarchical taxonomic information
+                         from feature IDs by separating levels with this
+                         character. This parameter is ignored if a taxonomy is
+                         provided as input.                         [optional]
+Outputs:
+  --o-visualization VISUALIZATION
+                                                                    [required]
+Miscellaneous:
+  --output-dir PATH      Output unspecified results to a directory
+  --verbose / --quiet    Display verbose output to stdout and/or stderr
+                         during execution of this action. Or silence output if
+                         execution is successful (silence is golden).
+  --example-data PATH    Write example data and exit.
+  --citations            Show citations and exit.
+  --help                 Show this message and exit.
+
+Examples:
+  # ### example: barplot
+  qiime taxa barplot \
+    --i-table table.qza \
+    --i-taxonomy taxonomy.qza \
+    --m-metadata-file sample-metadata.tsv \
+    --o-visualization taxa-bar-plots.qzv
+  
+
+                  There were some problems with the command:                  
+ (1/2) Invalid value for '--i-taxonomy': abby_taxonomy.qza does not exist.
+ (2/2) Invalid value for '--i-table': abby_table-deblur.qza does not exist.
+Usage: qiime taxa barplot [OPTIONS]
+
+  This visualizer produces an interactive barplot visualization of taxonomies.
+  Interactive features include multi-level sorting, plot recoloring, sample
+  relabeling, and SVG figure export.
+
+Inputs:
+  --i-table ARTIFACT FeatureTable[Frequency | PresenceAbsence]
+                         Feature table to visualize at various taxonomic
+                         levels.                                    [required]
+  --i-taxonomy ARTIFACT FeatureData[Taxonomy]
+                         Taxonomic annotations for features in the provided
+                         feature table. All features in the feature table must
+                         have a corresponding taxonomic annotation. Taxonomic
+                         annotations that are not present in the feature table
+                         will be ignored. If no taxonomy is provided, the
+                         feature IDs will be used as labels.        [optional]
+Parameters:
+  --m-metadata-file METADATA...
+    (multiple            The sample metadata.
+     arguments will be   
+     merged)                                                        [optional]
+  --p-level-delimiter TEXT
+                         Attempt to parse hierarchical taxonomic information
+                         from feature IDs by separating levels with this
+                         character. This parameter is ignored if a taxonomy is
+                         provided as input.                         [optional]
+Outputs:
+  --o-visualization VISUALIZATION
+                                                                    [required]
+Miscellaneous:
+  --output-dir PATH      Output unspecified results to a directory
+  --verbose / --quiet    Display verbose output to stdout and/or stderr
+                         during execution of this action. Or silence output if
+                         execution is successful (silence is golden).
+  --example-data PATH    Write example data and exit.
+  --citations            Show citations and exit.
+  --help                 Show this message and exit.
+
+Examples:
+  # ### example: barplot
+  qiime taxa barplot \
+    --i-table table.qza \
+    --i-taxonomy taxonomy.qza \
+    --m-metadata-file sample-metadata.tsv \
+    --o-visualization taxa-bar-plots.qzv
+  
+
+                  There were some problems with the command:                  
+ (1/2) Invalid value for '--i-taxonomy': abby_taxonomy2.qza does not exist.
+ (2/2) Invalid value for '--i-table': abby_table-deblur2.qza does not exist.
